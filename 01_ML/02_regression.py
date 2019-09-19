@@ -20,7 +20,7 @@ print(dataset_path)
 
 column_names = ['MPG','Cylinders','Displacement','Horsepower','Weight','Acceleration','Model Year','Origin']
 raw_dataset = pd.read_csv(dataset_path, names=column_names,
-                        na_values = "?", comment='\t', sep=" ", skipinitialspace=True)
+                          na_values = "?", comment='\t', sep=" ", skipinitialspace=True)
 
 dataset = raw_dataset.copy()
 print(dataset.tail())
@@ -58,6 +58,7 @@ def norm(x):
 normed_train_data = norm(train_dataset)
 normed_test_data = norm(test_dataset)
 
+
 # -----------------------------------
 # Build and train model
 def build_model():
@@ -79,7 +80,8 @@ EPOCHS = 100
 model = build_model()
 
 history1 = model.fit(normed_train_data, train_labels,
-                    epochs=EPOCHS, validation_split = 0.2, verbose=0)
+                     epochs=EPOCHS, validation_split = 0.2, verbose=0)
+
 
 # -----------------------------------
 def print_history(history):
@@ -112,6 +114,7 @@ plot_history(history1)
 
 print_history(history1)
 
+
 # -----------------------------------
 #  EarlyStopping
 model = build_model()
@@ -120,14 +123,15 @@ model = build_model()
 early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)
 
 history2 = model.fit(normed_train_data, train_labels,
-                    epochs=EPOCHS, validation_split = 0.2, verbose=0,
-                    callbacks=[early_stop])
+                     epochs=EPOCHS, validation_split = 0.2, verbose=0,
+                     callbacks=[early_stop])
 
 plot_history(history2)
 print_history(history2)
 
 loss, mae, mse = model.evaluate(normed_test_data, test_labels, verbose=0)
 print("Testing set Mean Abs Error: {:5.2f} MPG".format(mae))
+
 
 # -----------------------------------
 # Make predictions
@@ -146,5 +150,6 @@ error = test_predictions - test_labels
 plt.hist(error, bins = 25)
 plt.xlabel("Prediction Error [MPG]")
 _ = plt.ylabel("Count")
+
 
 # -----------------------------------
