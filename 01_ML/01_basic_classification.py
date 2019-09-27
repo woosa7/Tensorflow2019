@@ -1,3 +1,7 @@
+"""
+Tensorflow tutorials
+"""
+
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 import tensorflow as tf
@@ -47,7 +51,7 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-model.fit(train_images, train_labels, epochs=10, verbose=0)
+model.fit(train_images, train_labels, epochs=10, verbose=2)
 
 
 # Evaluate accuracy
@@ -60,5 +64,3 @@ print('Test accuracy:', test_acc)
 predictions = model.predict(test_images)
 print(np.argmax(predictions[0]))
 print(test_labels[0])
-
-# =======================================

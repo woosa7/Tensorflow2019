@@ -1,6 +1,6 @@
 """
-Regression: predict fuel efficiency
-Auto MPG dataset
+Tensorflow tutorials
+Regression: predict fuel efficiency Auto MPG dataset
 """
 
 from __future__ import absolute_import, division, print_function, unicode_literals

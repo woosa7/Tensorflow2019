@@ -1,6 +1,8 @@
 """
+Tensorflow tutorials
 Checkpoints : Save and restore models
 """
+
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 import os
