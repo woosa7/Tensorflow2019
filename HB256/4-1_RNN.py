@@ -11,6 +11,13 @@ https://m.blog.naver.com/magnking/221311273459
 * Long Short-Term Memory (LSTM) 이해하기
 https://dgkim5360.tistory.com/entry/understanding-long-short-term-memory-lstm-kr
 
+
+LSTM (Long short-term memory)
+- memory cell
+- input gate    : 현시점의 입력 상태가 현시점의 셀 상태로 흘러가는 양을 조절
+- forget gate   : 1시점 전의 셀 상태가 현시점의 셀 상태로 흘러가는 양을 조절
+- output gate
+
 -----------------------------
 1. 문자 예측
 
