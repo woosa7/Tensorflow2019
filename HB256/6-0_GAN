@@ -1,17 +1,41 @@
 GAN (Generative Adversarial Network)
 
-CGAN        - group label 등의 보조 정보 활용
-ACGAN       - 생성된 모든 표본에 group label 부여
-DCGAN       - 다층 신경망 대신 CNN 사용
-LSGAN       - D의 손실함수로 cross entropy 대신 least square 사용
-CycleGAN    - 두 도메인 양쪽에 대응하는 데이터 쌍이 없어도 한 도메인에 있는 영상을 다른 도메인으로 해석 가능
-DiscoGAN    - 서로 다른 도메인 사이의 관계를 찾는 것을 학습
-WGAN        - 손실함수로 Wasserstain divergence 사용
-InfoGAN     - GAN에 정보이론을 결합
+1. GAN
+- 심층신경망 fully connected network 사용.
+- 손실함수 : sigmoid cross entropy loss
+
+2. LSGAN
+- D의 손실함수로 cross entropy 대신 least square 사용
+
+3. DCGAN
+- 다층 신경망 대신 CNN 사용
+- fully connected layer 제거
+- 풀링층을 사용하지 않고 합성곱층에서 stride로 그 효과를 대체
+- D와 G 모두 batch normalization 사용
+- D : leaky ReLU / G : ReLU
+
+4. WGAN
+- 손실함수로 Wasserstain divergence 사용
+
+5. Conditional GAN
+- group label 등의 보조 정보 활용
+
+
+6. InfoGAN
+- GAN에 정보이론을 결합
+
+7. CycleGAN
+- 두 도메인 양쪽에 대응하는 데이터 쌍이 없어도 한 도메인에 있는 영상을 다른 도메인으로 해석 가능
+
+8. AC (Auxiliary classifier) GAN
+- 생성된 모든 표본에 group label 부여
+
+9. DiscoGAN
+- 서로 다른 도메인 사이의 관계를 찾는 것을 학습
+
 
 -------------------------------------------------------------------
 <게임이론 기초>
-
 
 1. 최소극대화 maximin / 최대극소화 minimax
 
@@ -32,7 +56,6 @@ InfoGAN     - GAN에 정보이론을 결합
 -------------------------------------------------------------------
 <GAN의 이익함수 & 함수>
 
-
 1. Vanilla GAN의 이익함수
 
 GAN의 생성자(G)와 판별자(D)는 제로섬 게임의 최소극대화 전략을 선택해 서로 이기려고 노력한다.
@@ -49,25 +72,25 @@ GAN의 생성자(G)와 판별자(D)는 제로섬 게임의 최소극대화 전�
 2. 학습 알고리즘
 
 for n_epoch:
-    * 노이즈 분포에서 m 개의 표본 추출 (A)
-    * 데이터 분포에서 m 개의 표본 추출 (B)
-    * 판별자 학습 : A --> False & B --> True
+  * 노이즈 분포에서 m 개의 표본 추출 (A)
+  * 데이터 분포에서 m 개의 표본 추출 (B)
+  * 판별자 학습 : A --> False & B --> True
 
-    * 노이즈 분포에서 m 개의 표본 추출 (C)
-    * 생성자 학습
+  * 노이즈 분포에서 m 개의 표본 추출 (C)
+  * 생성자 학습
 
 
 3. 생성자의 vanishing gradient problem
 
-    - [log (1 - D(G(z)))] 를 최소화하는 대신에 - [log G(z)]를 최소화하도록 학습.
+  -[log (1 - D(G(z)))] 를 최소화하는 대신에 -[log G(z)]를 최소화하도록 학습.
 
 
 4. Vanilla GAN의 문제점
 
-* gradient descent의 비수렴성 - G와 D의 균형을 확보하기 어려움.
-* mode collapse - G가 같은 데이터만 생성.
-* vanishing gradient - D의 학습이 너무 성공적임.
-* hyperparameter에 매우 민감.
+  * gradient descent의 비수렴성 - G와 D의 균형을 확보하기 어려움.
+  * mode collapse - G가 같은 데이터만 생성.
+  * vanishing gradient - D의 학습이 너무 성공적임.
+  * hyperparameter에 매우 민감.
 
 
 -------------------------------------------------------------------
@@ -90,4 +113,3 @@ for n_epoch:
 
 
 -------------------------------------------------------------------
-
