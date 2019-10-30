@@ -22,6 +22,7 @@ GAN (Generative Adversarial Network)
 - Critic의 가중치가 0 근처에 있도록 clipping 적용
 - 모멘텀 기반 Optimizer를 사용하지 않고 RMSProp 사용
 - clipping을 개선해 기울기 벡터의 norm이 1에서 멀어지면 벌칙을 주는 WGAN-GP (gradient penalty)
+* 참조 : https://haawron.tistory.com/21
 
 5. Conditional GAN
 - group label 등의 보조 정보 활용
@@ -30,12 +31,20 @@ GAN (Generative Adversarial Network)
 - real data에서는 조건에 해당하는 x를 랜덤 추출하여 결합
 - pix2pix, styleGAN의 기초
 
-
 6. InfoGAN
 - GAN에 정보이론을 결합
+- 두 분포의 상호정보량(mutual information)을 통해 상호의존성의 크기를 측정
+- noise vector (z)에 latent code (c)를 추가
+- 예: c1 숫자 종류, c2 숫자 기울기 등
+- 보조분포 Q를 정의해 상호정보량의 lower bound를 계산
+- 손실함수에 상호정보량 계산이 추가되어 c가 데이터의 특징을 가지게 된다.
+* 참조 : https://haawron.tistory.com/10
 
-7. CycleGAN
+7. CycleGAN & pix2pix
 - 두 도메인 양쪽에 대응하는 데이터 쌍이 없어도 한 도메인에 있는 영상을 다른 도메인으로 해석 가능
+- pix2pix : x와 y 두 쌍의 이미지가 쌍으로 제공됨
+- CycleGAN : 이미지 쌍이 아닌 서로 다른 두 도메인의 이미지 사용
+- noise vector (z) 사용하지 않음
 
 8. AC (Auxiliary classifier) GAN
 - 생성된 모든 표본에 group label 부여

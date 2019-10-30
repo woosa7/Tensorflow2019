@@ -122,7 +122,6 @@ for epoch in range(n_epochs):
     n_batch = int(sample_size/batch_size)
     avg_loss = 0
     for ii in range(n_batch):
-        ii = 0
         if ii != n_batch:
             batch_X = x_data[ii*batch_size:(ii+1)*batch_size]
             batch_Y = y_data[ii*batch_size:(ii+1)*batch_size]
@@ -141,7 +140,7 @@ for epoch in range(n_epochs):
         losses.append((D_loss_curr, G_loss_curr, avg_loss))
 
     if (epoch+1)%100 == 0:
-        print('Epoch: {0}, Discriminator Loss: {1:.5f}, Generator Loss: {2:.5f}'.format(epoch+1, D_loss_curr, G_loss_curr))
+        print('Epoch: {0}, Discriminator Loss: {1:.4f}, Generator Loss: {2:.4f}'.format(epoch+1, D_loss_curr, G_loss_curr))
 
     #------------------------------------------------
     if (epoch+1)%1000 == 0:
