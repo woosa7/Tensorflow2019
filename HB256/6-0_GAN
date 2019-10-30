@@ -13,12 +13,22 @@ GAN (Generative Adversarial Network)
 - 풀링층을 사용하지 않고 합성곱층에서 stride로 그 효과를 대체
 - D와 G 모두 batch normalization 사용
 - D : leaky ReLU / G : ReLU
+- latent space를 이용해 벡터 산술 연산이 가능하기 때문에 의미론적인 속성이 학습됨
 
 4. WGAN
 - 손실함수로 Wasserstain divergence 사용
+- Discriminator 가 아닌 Critic
+- 손실 함수에 로그 함수를 사용하지 않음
+- Critic의 가중치가 0 근처에 있도록 clipping 적용
+- 모멘텀 기반 Optimizer를 사용하지 않고 RMSProp 사용
+- clipping을 개선해 기울기 벡터의 norm이 1에서 멀어지면 벌칙을 주는 WGAN-GP (gradient penalty)
 
 5. Conditional GAN
 - group label 등의 보조 정보 활용
+- 원하는 특징을 가진 이미지를 생성하도록 조정
+- fake data에 제공되는 조건은 단지 데이터에 결합될 뿐
+- real data에서는 조건에 해당하는 x를 랜덤 추출하여 결합
+- pix2pix, styleGAN의 기초
 
 
 6. InfoGAN
@@ -110,6 +120,7 @@ for n_epoch:
 * Total variation
 
 * Wasserstein divergence
-
+  - 두 분포를 일치시키기 위해 필요한 최소 운동량으로 해석할 수 있다.
+  - KL 또는 JS divergence 보다 두 분포의 거리를 잘 표현한다.
 
 -------------------------------------------------------------------
